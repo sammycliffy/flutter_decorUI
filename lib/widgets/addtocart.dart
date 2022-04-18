@@ -26,7 +26,10 @@ class _AddToCartState extends State<AddToCart> {
           height: 50,
           decoration:
               BoxDecoration(shape: BoxShape.circle, color: Colors.grey[600]),
-          child: const Icon(Icons.shopping_cart_outlined),
+          child: const Icon(
+            Icons.add_shopping_cart_outlined,
+            color: kWhite,
+          ),
         )
       ]),
     );

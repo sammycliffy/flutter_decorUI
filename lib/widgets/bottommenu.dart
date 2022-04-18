@@ -40,19 +40,19 @@ class _BottomMenuState extends State<BottomMenu> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const [
                   IconButton(
-                    onPressed: null,
-                    icon: FaIcon(
-                      FontAwesomeIcons.house,
-                      color: kWhite,
-                    ),
-                  ),
-                  IconButton(
                       onPressed: null,
                       icon: Icon(
-                        Icons.heart_broken_outlined,
+                        Icons.home_outlined,
                         color: kWhite,
                         size: 30,
                       )),
+                  IconButton(
+                    onPressed: null,
+                    icon: FaIcon(
+                      FontAwesomeIcons.heart,
+                      color: kWhite,
+                    ),
+                  ),
                   IconButton(
                       onPressed: null,
                       icon: Icon(

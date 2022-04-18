@@ -21,31 +21,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       body: SafeArea(
         child: Stack(
           children: [
-            const Align(
-              alignment: AlignmentDirectional(-0.89, -0.9),
+            Align(
+              alignment: const AlignmentDirectional(-0.89, -0.9),
               child: Text(
                 'Neo',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            const Align(
-              alignment: AlignmentDirectional(-0.64, -0.9),
-              child: Text(
-                'Decor',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  color: Color(0xFFF19A87),
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: GoogleFonts.nunito(
+                    fontSize: 30, fontWeight: FontWeight.bold, height: 1),
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(-0.86, -0.58),
+              alignment: const AlignmentDirectional(-0.56, -0.9),
+              child: Text(
+                'Decor',
+                style: GoogleFonts.nunito(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    height: 1,
+                    color: kOrange),
+              ),
+            ),
+            Align(
+              alignment: const AlignmentDirectional(-0.86, -0.50),
               child: Text(
                 'Let\'s',
                 style: GoogleFonts.nunito(
@@ -67,11 +63,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               child: Text(
                 'decor',
                 style: GoogleFonts.nunito(
-                    fontSize: 45, fontWeight: FontWeight.bold, height: 1),
+                    fontSize: 45,
+                    fontWeight: FontWeight.bold,
+                    height: 1,
+                    fontStyle: FontStyle.italic),
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(-0.78, -0.25),
+              alignment: const AlignmentDirectional(-0.78, -0.20),
               child: Text(
                 'your home',
                 style: GoogleFonts.nunito(

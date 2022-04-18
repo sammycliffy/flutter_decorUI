@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_test/constants/color.dart';
 import 'package:home_test/constants/spaces.dart';
 import 'package:home_test/widgets/addtocart.dart';
@@ -80,7 +81,24 @@ class _ProductScreenState extends State<ProductScreen> {
               children: [Container(color: kWhite), const Counter()],
             ),
             heightSpace(30),
-            const AddToCart()
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: const BoxDecoration(
+                      color: kWhite, shape: BoxShape.circle),
+                  child: const Center(
+                    child: FaIcon(
+                      FontAwesomeIcons.heart,
+                      color: kBlack,
+                    ),
+                  ),
+                ),
+                const AddToCart()
+              ],
+            )
           ],
         ),
       )),

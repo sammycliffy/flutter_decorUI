@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_test/constants/color.dart';
 
 class Trending extends StatefulWidget {
@@ -43,11 +44,12 @@ class _TrendingState extends State<Trending> {
                   bottom: 10.0,
                   right: 0,
                   child: IconButton(
-                      onPressed: null,
-                      icon: Icon(
-                        Icons.heart_broken,
-                        color: kWhite,
-                      )),
+                    onPressed: null,
+                    icon: FaIcon(
+                      FontAwesomeIcons.heart,
+                      color: kWhite,
+                    ),
+                  ),
                 ),
                 Positioned(
                     bottom: 10.0,
