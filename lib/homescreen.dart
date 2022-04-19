@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_test/constants/color.dart';
 import 'package:home_test/constants/spaces.dart';
-import 'package:home_test/trending.dart';
-import 'package:home_test/widgets/bottommenu.dart';
+import 'package:home_test/tabs/chairs.dart';
+import 'package:home_test/tabs/decor.dart';
+import 'package:home_test/tabs/trending.dart';
+import 'package:home_test/widgets/filter.dart';
+import 'package:home_test/widgets/search.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,16 +31,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'Discover\nNew items',
                     style: GoogleFonts.nunito(
-                        fontSize: 40, fontWeight: FontWeight.bold, height: 1),
+                        fontSize: 35, fontWeight: FontWeight.bold, height: 1),
                   ),
                   heightSpace(30),
-                  searchBar(),
-                  heightSpace(30),
-                  const TabBar(
+                  Row(children: [
+                    const SearchBar(),
+                    widthSpace(10),
+                    const Filter()
+                  ]),
+                  heightSpace(20),
+                  TabBar(
                     labelColor: kTabColor,
                     indicatorColor: kOrange,
-                    unselectedLabelColor: kBlack,
-                    tabs: [
+                    unselectedLabelColor: Colors.grey[600],
+                    indicatorWeight: 3.0,
+                    indicatorPadding:
+                        const EdgeInsets.symmetric(horizontal: 40.0),
+                    labelStyle: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w600),
+                    tabs: const [
                       Tab(
                         text: 'Trending',
                       ),
@@ -55,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TabBarView(
                       children: [
                         Trending(),
-                        Icon(Icons.directions_transit),
-                        Icon(Icons.directions_bike),
+                        Decor(),
+                        Chairs(),
                       ],
                     ),
                   ),
@@ -65,23 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           )),
-    );
-  }
-
-  searchBar() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-      ),
-      child: TextFormField(
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-            border: const OutlineInputBorder(borderSide: BorderSide.none),
-            hintText: 'Search product',
-            prefixIcon: GestureDetector(
-                onTap: null, child: const Icon(Icons.search, size: 30))),
-      ),
     );
   }
 }

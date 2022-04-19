@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:home_test/constants/color.dart';
 
-class AddToCart extends StatefulWidget {
-  const AddToCart({Key? key}) : super(key: key);
+class AddToCartButton extends StatefulWidget {
+  const AddToCartButton({Key? key}) : super(key: key);
 
   @override
-  _AddToCartState createState() => _AddToCartState();
+  _AddToCartButtonState createState() => _AddToCartButtonState();
 }
 
-class _AddToCartState extends State<AddToCart> {
+class _AddToCartButtonState extends State<AddToCartButton> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:home_test/carts.dart';
 import 'package:home_test/constants/color.dart';
+import 'package:home_test/favourite.dart';
 import 'package:home_test/homescreen.dart';
 
 class BottomMenu extends StatefulWidget {
@@ -16,12 +18,8 @@ class _BottomMenuState extends State<BottomMenu> {
   int _currentIndex = 0;
   final List<Widget> _tabs = [
     const HomeScreen(),
-    const Center(
-      child: Text('2'),
-    ),
-    const Center(
-      child: Text('3'),
-    )
+    const Favourite(),
+    const Cart()
   ];
 
   @override
@@ -38,30 +36,34 @@ class _BottomMenuState extends State<BottomMenu> {
                 color: kBlack, borderRadius: BorderRadius.circular(20)),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
+                children: [
                   IconButton(
-                      onPressed: null,
+                      onPressed: () => setPage(0),
                       icon: Icon(
                         Icons.home_outlined,
-                        color: kWhite,
+                        color: _currentIndex == 0 ? kOrange : kWhite,
                         size: 30,
                       )),
                   IconButton(
-                    onPressed: null,
+                    onPressed: () => setPage(1),
                     icon: FaIcon(
                       FontAwesomeIcons.heart,
-                      color: kWhite,
+                      color: _currentIndex == 1 ? kOrange : kWhite,
                     ),
                   ),
                   IconButton(
-                      onPressed: null,
+                      onPressed: () => setPage(2),
                       icon: Icon(
                         Icons.shopping_cart_outlined,
-                        color: kWhite,
+                        color: _currentIndex == 2 ? kOrange : kWhite,
                         size: 30,
                       ))
                 ]),
           ),
         ));
   }
+
+  setPage(index) => setState(() {
+        _currentIndex = index;
+      });
 }

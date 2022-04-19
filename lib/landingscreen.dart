@@ -20,25 +20,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       backgroundColor: kPrimary,
       body: SafeArea(
         child: Stack(
+          clipBehavior: Clip.none,
           children: [
             Align(
               alignment: const AlignmentDirectional(-0.89, -0.9),
-              child: Text(
-                'Neo',
-                style: GoogleFonts.nunito(
-                    fontSize: 30, fontWeight: FontWeight.bold, height: 1),
-              ),
+              child: Text('Neo', style: Theme.of(context).textTheme.headline1),
             ),
             Align(
               alignment: const AlignmentDirectional(-0.56, -0.9),
-              child: Text(
-                'Decor',
-                style: GoogleFonts.nunito(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    height: 1,
-                    color: kOrange),
-              ),
+              child:
+                  Text('Decor', style: Theme.of(context).textTheme.headline1),
             ),
             Align(
               alignment: const AlignmentDirectional(-0.86, -0.50),
@@ -48,8 +39,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     fontSize: 45, fontWeight: FontWeight.bold, height: 1),
               ),
             ),
-            Align(
-              alignment: const AlignmentDirectional(-8.60, 0.20),
+            Positioned(
+              right: 150,
+              top: 200,
               child: ClipOval(
                 child: Container(
                   width: 400,
@@ -60,14 +52,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             ),
             Align(
               alignment: const AlignmentDirectional(-0.89, -0.36),
-              child: Text(
-                'decor',
-                style: GoogleFonts.nunito(
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
-                    height: 1,
-                    fontStyle: FontStyle.italic),
-              ),
+              child:
+                  Text('decor', style: Theme.of(context).textTheme.headline1!),
             ),
             Align(
               alignment: const AlignmentDirectional(-0.78, -0.20),

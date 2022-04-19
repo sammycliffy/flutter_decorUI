@@ -8,3 +8,6 @@ const kWhite = Color(0xffFFFFFF);
 const kBlack = Color(0xff000000);
 const kTabColor = Color(0xffF5B9AB);
 const kcounterColor = Color(0xffF3E0DA);
+const firstCircle = Color(0xff83A99E);
+const secondCircle = Color(0xffBDB9AB);
+const thirdCircle = Color(0xffF2B7AF);
