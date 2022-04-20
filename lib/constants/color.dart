@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 const kPrimary = Color(0xFFFEF0C1);
 
-const kOrange = Color(0xFFF0A59C);
+const kOrange = Color(0xFFDF9278);
+const klandingCircle = Color(0xFFF0A29B);
+
 const homecolor = Color(0xFFFBE9E0);
 const kWhite = Color(0xffFFFFFF);
 const kBlack = Color(0xff000000);

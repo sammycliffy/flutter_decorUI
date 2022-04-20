@@ -37,7 +37,10 @@ class _ChairsState extends State<Chairs> {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ProductScreen(item: chairs[index]))),
+                    builder: (context) => ProductScreen(
+                          item: chairs,
+                          index: index,
+                        ))),
             child: Stack(
               children: [
                 ClipRRect(

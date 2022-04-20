@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:home_test/constants/color.dart';
 import 'package:home_test/constants/route.dart';
 import 'package:home_test/helpers/providers.dart';
 import 'package:home_test/landingscreen.dart';
@@ -22,10 +23,13 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           fontFamily: 'Nunito',
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.orange,
           textTheme: TextTheme(
             headline1: GoogleFonts.nunito(
-                fontSize: 30, fontWeight: FontWeight.bold, height: 1),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                height: 1,
+                color: kBlack),
           ),
         ),
         home: const HomePageWidget(),

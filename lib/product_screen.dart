@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'models/items.dart';
 
 class ProductScreen extends StatefulWidget {
-  final Items? item;
+  final List<Items>? item;
   final int? index;
   const ProductScreen({Key? key, @required this.item, this.index})
       : super(key: key);
@@ -25,6 +25,7 @@ class _ProductScreenState extends State<ProductScreen> {
   final ScrollController _controller = ScrollController();
   ProductProvider? _productNotifier;
   double dotPosition = 0;
+  int colorIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -49,35 +50,21 @@ class _ProductScreenState extends State<ProductScreen> {
                 ))),
             heightSpace(20),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.only(left: 20),
               height: 250,
               child: NotificationListener(
-                child: ListView(
+                child: ListView.builder(
+                  itemCount: widget.item!.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(widget.item![index].image!)),
+                    );
+                  },
                   controller: _controller,
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child:
-                              Image.asset('assets/images/candle_holder.jpeg')),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child:
-                              Image.asset('assets/images/candle_holder1.jpeg')),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child:
-                              Image.asset('assets/images/candle_holder2.jpeg')),
-                    )
-                  ],
                 ),
                 onNotification: (value) {
                   if (value is ScrollEndNotification) {
@@ -96,7 +83,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         dotPosition = 2.0;
                       });
                     }
-                    print(_controller.position.pixels);
+
                     return true;
                   }
                   return false;
@@ -120,7 +107,7 @@ class _ProductScreenState extends State<ProductScreen> {
               children: [
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    widget.item!.brand!,
+                    widget.item![widget.index!].brand!,
                     style: GoogleFonts.nunito(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -128,7 +115,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ),
                   Text(
-                    widget.item!.name!,
+                    widget.item![widget.index!].name!,
                     style: GoogleFonts.nunito(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -148,11 +135,23 @@ class _ProductScreenState extends State<ProductScreen> {
               children: [
                 Row(
                   children: [
-                    circle(firstCircle),
-                    widthSpace(5),
-                    circle(secondCircle),
-                    widthSpace(5),
-                    circle(thirdCircle)
+                    GestureDetector(
+                      child:
+                          circle(firstCircle, colorIndex == 0 ? true : false),
+                      onTap: () => changeColorIndex(0),
+                    ),
+                    widthSpace(8),
+                    GestureDetector(
+                      child:
+                          circle(secondCircle, colorIndex == 1 ? true : false),
+                      onTap: () => changeColorIndex(1),
+                    ),
+                    widthSpace(8),
+                    GestureDetector(
+                      child:
+                          circle(thirdCircle, colorIndex == 2 ? true : false),
+                      onTap: () => changeColorIndex(2),
+                    )
                   ],
                 ),
                 const Counter()
@@ -168,7 +167,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   decoration: const BoxDecoration(
                       color: kWhite, shape: BoxShape.circle),
                   child: Center(
-                      child: widget.item!.like!
+                      child: widget.item![widget.index!].like!
                           ? IconButton(
                               onPressed: () => addToFavourite(widget.index),
                               icon: const Icon(Icons.favorite),
@@ -184,9 +183,10 @@ class _ProductScreenState extends State<ProductScreen> {
                       if (_productNotifier!.currentQuantity == 0) {
                         ToastUtils.showRedToast('Select quantity');
                       } else {
-                        widget.item!.quantity =
+                        widget.item![widget.index!].quantity =
                             _productNotifier!.currentQuantity;
-                        _productNotifier!.addToCart(widget.item!);
+                        _productNotifier!
+                            .addToCart(widget.item![widget.index!]);
                         ToastUtils.showRedToast('added to cart');
                       }
                     },
@@ -199,30 +199,35 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
+  changeColorIndex(index) => setState(() {
+        colorIndex = index;
+      });
   addToFavourite(index) => setState(() {
-        widget.item!.like = !widget.item!.like!;
-        if (widget.item!.like! == false) {
-          _productNotifier!.favourte
-              .removeWhere((element) => element.id == widget.item!.id);
+        widget.item![widget.index!].like = !widget.item![widget.index!].like!;
+        if (widget.item![widget.index!].like! == false) {
+          _productNotifier!.favourte.removeWhere(
+              (element) => element.id == widget.item![widget.index!].id);
         } else {
-          _productNotifier!.addToFavourite(widget.item!);
+          _productNotifier!.addToFavourite(widget.item![widget.index!]);
         }
       });
 }
 
-circle(color) => Container(
+circle(Color color, bool shadow) => Container(
       width: 45,
       height: 45,
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
         boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.8),
-            spreadRadius: 3,
-            blurRadius: 5,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
+          shadow
+              ? BoxShadow(
+                  color: Colors.grey.withOpacity(0.8),
+                  spreadRadius: 3,
+                  blurRadius: 5,
+                  offset: Offset(0, 3), // changes position of shadow
+                )
+              : BoxShadow()
         ],
       ),
     );

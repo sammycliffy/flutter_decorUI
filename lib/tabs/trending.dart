@@ -38,7 +38,7 @@ class _TrendingState extends State<Trending> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => ProductScreen(
-                          item: trending[index],
+                          item: trending,
                           index: index,
                         ))),
             child: Stack(

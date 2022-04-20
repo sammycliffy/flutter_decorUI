@@ -37,7 +37,10 @@ class _DecorState extends State<Decor> {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ProductScreen(item: decor[index]))),
+                    builder: (context) => ProductScreen(
+                          item: decor,
+                          index: index,
+                        ))),
             child: Stack(
               children: [
                 ClipRRect(

@@ -18,7 +18,7 @@ class _CounterState extends State<Counter> {
   Widget build(BuildContext context) {
     _productNotifier = Provider.of<ProductProvider>(context, listen: false);
     return Container(
-      width: 150,
+      width: 110,
       height: 40,
       decoration: BoxDecoration(
           color: kcounterColor, borderRadius: BorderRadius.circular(30)),
