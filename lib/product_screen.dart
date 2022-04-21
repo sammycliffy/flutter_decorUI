@@ -23,6 +23,12 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final ScrollController _controller = ScrollController();
+  late final AnimationController _animationController, _controller1;
+
+  late final Animation<Offset> _firstAnimation,
+      _secondAnimation,
+      _thirdAnimation,
+      _fourthAnimation;
   ProductProvider? _productNotifier;
   double dotPosition = 0;
   int colorIndex = 0;

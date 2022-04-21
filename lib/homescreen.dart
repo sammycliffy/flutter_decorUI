@@ -15,7 +15,74 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  late final AnimationController _controller, _controller2;
+
+  late final Animation<Offset> _firstAnimation,
+      _secondAnimation,
+      _thirdAnimation,
+      _fourthAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _firstAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(0.8, 0.0),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticIn,
+    ));
+
+    _secondAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(0.4, 0.0),
+    ).animate(CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(
+          0.5,
+          1.0,
+          curve: Curves.elasticOut,
+        )));
+
+    _thirdAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(0.4, 0.0),
+    ).animate(CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(
+          0.5,
+          1.0,
+          curve: Curves.elasticOut,
+        )));
+    _fourthAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(0.4, 0.0),
+    ).animate(CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(
+          1.0,
+          1.0,
+          curve: Curves.elasticIn,
+        )));
+    _controller2 = AnimationController(
+      vsync: this,
+      lowerBound: 0.5,
+      duration: const Duration(seconds: 1),
+    );
+    repeatOnce();
+  }
+
+  void repeatOnce() async {
+    await _controller.forward();
+    await _controller.reverse();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -28,38 +95,47 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Discover\nNew items',
-                    style: GoogleFonts.nunito(
-                        fontSize: 35, fontWeight: FontWeight.bold, height: 1),
+                  SlideTransition(
+                    position: _firstAnimation,
+                    child: Text(
+                      'Discover\nNew items',
+                      style: GoogleFonts.nunito(
+                          fontSize: 35, fontWeight: FontWeight.bold, height: 1),
+                    ),
                   ),
                   heightSpace(30),
-                  Row(children: [
-                    const SearchBar(),
-                    widthSpace(10),
-                    const Filter()
-                  ]),
+                  SlideTransition(
+                    position: _firstAnimation,
+                    child: Row(children: [
+                      const SearchBar(),
+                      widthSpace(10),
+                      const Filter()
+                    ]),
+                  ),
                   heightSpace(20),
-                  TabBar(
-                    labelColor: kTabColor,
-                    indicatorColor: kOrange,
-                    unselectedLabelColor: Colors.grey[600],
-                    indicatorWeight: 3.0,
-                    indicatorPadding:
-                        const EdgeInsets.symmetric(horizontal: 40.0),
-                    labelStyle: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    tabs: const [
-                      Tab(
-                        text: 'Trending',
-                      ),
-                      Tab(
-                        text: 'Decor',
-                      ),
-                      Tab(
-                        text: 'Chairs',
-                      ),
-                    ],
+                  SlideTransition(
+                    position: _secondAnimation,
+                    child: TabBar(
+                      labelColor: kTabColor,
+                      indicatorColor: kOrange,
+                      unselectedLabelColor: Colors.grey[600],
+                      indicatorWeight: 3.0,
+                      indicatorPadding:
+                          const EdgeInsets.symmetric(horizontal: 40.0),
+                      labelStyle: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w600),
+                      tabs: const [
+                        Tab(
+                          text: 'Trending',
+                        ),
+                        Tab(
+                          text: 'Decor',
+                        ),
+                        Tab(
+                          text: 'Chairs',
+                        ),
+                      ],
+                    ),
                   ),
                   heightSpace(30),
                   const SizedBox(

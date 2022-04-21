@@ -35,7 +35,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   animations: ^2.0.2
   google_fonts: ^2.3.1
+  inkwell_splash: ^0.0.1
+
   font_awesome_flutter: ^10.1.0
+  flutter_ripple: ^0.0.1
   fluttertoast: ^8.0.9
 
   dots_indicator: ^2.1.0

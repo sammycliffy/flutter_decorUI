@@ -104,6 +104,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  flutter_ripple:
+    dependency: "direct main"
+    description:
+      name: flutter_ripple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -149,6 +156,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  inkwell_splash:
+    dependency: "direct main"
+    description:
+      name: inkwell_splash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   js:
     dependency: transitive
     description:
