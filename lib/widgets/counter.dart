@@ -43,13 +43,16 @@ class _CounterState extends State<Counter> {
     );
   }
 
-  decrement() => setState(() {
-        if (counter <= 0) {
-          ToastUtils.showRedToast('Invalid value');
-        } else {
-          counter--;
-        }
+  decrement() {
+    if (counter <= 0) {
+      ToastUtils.showRedToast('Invalid value');
+    } else {
+      setState(() {
+        counter--;
       });
+    }
+  }
+
   button() => GestureDetector(
         onTap: () {
           setState(() {

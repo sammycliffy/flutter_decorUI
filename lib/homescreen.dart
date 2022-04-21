@@ -16,12 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late final AnimationController _controller, _controller2;
+  late final AnimationController _controller;
 
-  late final Animation<Offset> _firstAnimation,
-      _secondAnimation,
-      _thirdAnimation,
-      _fourthAnimation;
+  late final Animation<Offset> _firstAnimation, _secondAnimation;
 
   @override
   void initState() {
@@ -50,31 +47,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           curve: Curves.elasticOut,
         )));
 
-    _thirdAnimation = Tween<Offset>(
-      begin: Offset.zero,
-      end: Offset(0.4, 0.0),
-    ).animate(CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(
-          0.5,
-          1.0,
-          curve: Curves.elasticOut,
-        )));
-    _fourthAnimation = Tween<Offset>(
-      begin: Offset.zero,
-      end: Offset(0.4, 0.0),
-    ).animate(CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(
-          1.0,
-          1.0,
-          curve: Curves.elasticIn,
-        )));
-    _controller2 = AnimationController(
-      vsync: this,
-      lowerBound: 0.5,
-      duration: const Duration(seconds: 1),
-    );
     repeatOnce();
   }
 
@@ -114,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   heightSpace(20),
                   SlideTransition(
-                    position: _secondAnimation,
+                    position: _firstAnimation,
                     child: TabBar(
                       labelColor: kTabColor,
                       indicatorColor: kOrange,
@@ -138,14 +110,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                   ),
                   heightSpace(30),
-                  const SizedBox(
-                    height: 350,
-                    child: TabBarView(
-                      children: [
-                        Trending(),
-                        Decor(),
-                        Chairs(),
-                      ],
+                  SlideTransition(
+                    position: _firstAnimation,
+                    child: const SizedBox(
+                      height: 350,
+                      child: TabBarView(
+                        children: [
+                          Trending(),
+                          Decor(),
+                          Chairs(),
+                        ],
+                      ),
                     ),
                   ),
                   heightSpace(30),

@@ -134,7 +134,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     ...List.generate(
                       2,
                       (int index) => Positioned(
-                        right: 146,
+                        right: 80,
                         top: 250,
                         child: SlideTransition(
                           position: _secondAnimation,
